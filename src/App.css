@@ -32,7 +32,28 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
+.links {
+  color: rgb(44, 25, 152);
+  text-decoration: none;
+  font-size: medium;
+}
+
+.login-page {
+  width: 100%;
+  height: 100vh;
+  display: inline-block;
+  display: flex;
+  align-items: center;
+}
+
+/* .bg-style {
+  background-color: black;
+  color: #fff;
+  padding: 20px;
+} */
