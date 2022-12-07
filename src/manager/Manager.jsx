@@ -136,76 +136,66 @@ function Manager() {
   }, []);
   return (
     <div className="container mt-5">
-      <div className="row">
-        <div className="col-lg-12">
-          <div className="mb-4" onChange={(e) => handleQuery(e)} value={querys}>
+      <div className="row mb-5">
+        <div className="d-flex" onChange={(e) => handleQuery(e)} value={querys}>
+          <div class="form-check me-5">
             <input
+              class="form-check-input"
               type="radio"
-              name="gender"
-              id="customRadioInline1"
+              name="flexRadioDefault"
+              id="flexRadioDefault1"
               value="1"
-              class="custom-control-input me-1"
             />
-
-            <label
-              class="custom-control-label me-5"
-              htmlFor="customRadioInline1"
-            >
+            <label class="form-check-label" for="flexRadioDefault1">
               Dept.HR with Max salary
             </label>
-
+          </div>
+          <div class="form-check me-5">
             <input
+              class="form-check-input"
               type="radio"
-              name="gender"
-              id="customRadioInline2"
+              name="flexRadioDefault"
+              id="flexRadioDefault2"
               value="2"
-              class="custom-control-input me-1"
             />
-            <label
-              class="custom-control-label me-5"
-              htmlFor="customRadioInline2"
-            >
+            <label class="form-check-label" for="flexRadioDefault2">
               Dept.IT with Min salary
             </label>
+          </div>
+          <div class="form-check me-5">
             <input
+              class="form-check-input"
               type="radio"
-              name="gender"
-              id="customRadioInline3"
+              name="flexRadioDefault"
               value="3"
-              class="custom-control-input me-1"
+              id="flexRadioDefault3"
             />
-            <label
-              class="custom-control-label me-5"
-              htmlFor="customRadioInline3"
-            >
+            <label class="form-check-label" for="flexRadioDefault3">
               Dept.IT & location is Surat city
             </label>
+          </div>
 
+          <div class="form-check me-5">
             <input
+              class="form-check-input"
               type="radio"
-              name="gender"
-              id="customRadioInline4"
+              name="flexRadioDefault"
               value="4"
-              class="custom-control-input me-1"
+              id="flexRadioDefault4"
             />
-            <label
-              class="custom-control-label me-5"
-              htmlFor="customRadioInline4"
-            >
-              Dept.IT & location name is starting from A
+            <label class="form-check-label" for="flexRadioDefault4">
+              Dept.IT & city starting from A
             </label>
-
+          </div>
+          <div class="form-check">
             <input
+              class="form-check-input"
               type="radio"
-              name="gender"
-              id="customRadioInline5"
               value="5"
-              class="custom-control-input me-1"
+              name="flexRadioDefault"
+              id="flexRadioDefault5"
             />
-            <label
-              class="custom-control-label me-5"
-              htmlFor="customRadioInline5"
-            >
+            <label class="form-check-label" for="flexRadioDefault5">
               Dept.Sales & descending order of employee name
             </label>
           </div>

@@ -3,7 +3,7 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import Manager from "./manager/Manager";
 import React, { useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Employee from "./manager/Employee";
 function App() {
   const [toggleForm, setToggleForm] = useState(true);
@@ -12,22 +12,20 @@ function App() {
   };
   return (
     <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              toggleForm ? (
-                <Login toggle={() => formMode()} />
-              ) : (
-                <SignUp toggle={() => formMode()} />
-              )
-            }
-          />
-          <Route path="/manager" element={<Manager />} />
-          <Route path="/employee/:uid" element={<Employee />} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            toggleForm ? (
+              <Login toggle={() => formMode()} />
+            ) : (
+              <SignUp toggle={() => formMode()} />
+            )
+          }
+        />
+        <Route path="/manager" element={<Manager />} />
+        <Route path="/employee/:uid" element={<Employee />} />
+      </Routes>
     </div>
   );
 }

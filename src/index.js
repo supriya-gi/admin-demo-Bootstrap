@@ -7,12 +7,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
-    <ToastContainer />
+    <BrowserRouter>
+      <App />
+      <ToastContainer />
+    </BrowserRouter>
   </React.StrictMode>
 );
 

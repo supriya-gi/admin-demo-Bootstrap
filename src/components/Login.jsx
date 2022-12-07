@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { auth, db } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -11,18 +11,23 @@ function Login(props) {
   const Navigate = useNavigate();
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
-  // const [remember, setRememberMe] = useState(false);
+  const [remember, setRememberMe] = useState(false);
 
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
-    remember: false,
   });
   // const [submitted, setSubmitted] = useState(false);
-  const { email, password, remember } = inputs;
+  const { email, password } = inputs;
   // const handleEmail = (e) => {
   //   setEmail(e.target.value);
   // };
+  useEffect(() => {
+    setInputs({
+      email: localStorage?.getItem("email"),
+      password: localStorage?.getItem("password"),
+    });
+  }, []);
   // const handlePassword = (e) => {
   //   setPassword(e.target.value);
   // };
@@ -30,22 +35,27 @@ function Login(props) {
   //   setRememberMe(e.target.checked);
   // };
   const handleCheck = (e) => {
-    const { name, value } = e.target;
-
-    if (e.target.type === "checkbox" && !e.target.checked) {
-      setInputs((inputs) => ({ ...inputs, [name]: "" }));
-    } else {
-      setInputs((inputs) => ({ ...inputs, remember: !inputs.remember }));
-    }
+    setRememberMe((pre) => !pre);
+    // const { name, value } = e.target;
+    // if (e.target.type === "checkbox" && !e.target.checked) {
+    //   setInputs((inputs) => ({ ...inputs, [name]: "" }));
+    // } else {
+    //   setInputs((inputs) => ({ ...inputs, remember: !inputs.remember }));
+    // }
     // setInputs((inputs) => ({ ...inputs, remember: !inputs.remember }));
   };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
+
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    if (remember) {
+      localStorage.setItem("email", email);
+      localStorage.setItem("password", password);
+    }
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
       const uid = res.user.uid;
@@ -62,23 +72,12 @@ function Login(props) {
           ? Navigate(`/manager`)
           : Navigate(`/employee/${uid}`);
       } else {
-        // toast("No user Found", { type: "error" });
-        return "No user Found";
+        toast("No user Found", { type: "error" });
+        // return "No user Found";
       }
     } catch (error) {
       // console.log(error);
       toast("Invalid Credential", { type: "error" });
-      // switch (error.code) {
-      //   case "email-already-use-in":
-      //     // toast.error(error.message);
-      //     toast("email-already-use-in", { type: "error" });
-      //     break;
-      //   case "invalid-email":
-      //     // toast.error(error.message);
-
-      //     toast("invalid-email", { type: "error" });
-      //     break;
-      // }
     }
   };
   return (
@@ -142,7 +141,6 @@ function Login(props) {
                     type="checkbox"
                     name="remember"
                     checked={remember}
-                    value={remember}
                     onChange={(e) => handleCheck(e)}
                   />
                   Remember me
