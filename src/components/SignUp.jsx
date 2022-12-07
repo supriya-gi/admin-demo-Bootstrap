@@ -65,8 +65,10 @@ function SignUp(props) {
         if (res) {
           createUserDocument(res, formData);
           console.log("res", res, "hi", formData);
+
           props.toggle();
-          toast.success("User Register Successfully");
+          // toast.success("User Register Successfully");
+          toast("User Register successfully", { type: "success" });
         }
       })
       .catch((error) => {
@@ -74,9 +76,12 @@ function SignUp(props) {
         switch (error.code) {
           case "email-already-use-in":
             toast.error(error.message);
+            toast("email-already-use-in", { type: "error" });
             break;
           case "invalid-email":
             toast.error(error.message);
+
+            toast("invalid-email", { type: "error" });
             break;
         }
       });

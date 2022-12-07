@@ -4,22 +4,44 @@ import { auth, db } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import "../App.css";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 function Login(props) {
   const Navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [remember, setRememberMe] = useState(false);
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [remember, setRememberMe] = useState(false);
 
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+    remember: false,
+  });
+  // const [submitted, setSubmitted] = useState(false);
+  const { email, password, remember } = inputs;
+  // const handleEmail = (e) => {
+  //   setEmail(e.target.value);
+  // };
+  // const handlePassword = (e) => {
+  //   setPassword(e.target.value);
+  // };
+  // const handleCheck = (e) => {
+  //   setRememberMe(e.target.checked);
+  // };
   const handleCheck = (e) => {
-    setRememberMe(e.target.checked);
+    const { name, value } = e.target;
+
+    if (e.target.type === "checkbox" && !e.target.checked) {
+      setInputs((inputs) => ({ ...inputs, [name]: "" }));
+    } else {
+      setInputs((inputs) => ({ ...inputs, remember: !inputs.remember }));
+    }
+    // setInputs((inputs) => ({ ...inputs, remember: !inputs.remember }));
+  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInputs((inputs) => ({ ...inputs, [name]: value }));
   };
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -40,10 +62,23 @@ function Login(props) {
           ? Navigate(`/manager`)
           : Navigate(`/employee/${uid}`);
       } else {
+        // toast("No user Found", { type: "error" });
         return "No user Found";
       }
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      // console.log(error);
+      toast("Invalid Credential", { type: "error" });
+      // switch (error.code) {
+      //   case "email-already-use-in":
+      //     // toast.error(error.message);
+      //     toast("email-already-use-in", { type: "error" });
+      //     break;
+      //   case "invalid-email":
+      //     // toast.error(error.message);
+
+      //     toast("invalid-email", { type: "error" });
+      //     break;
+      // }
     }
   };
   return (
@@ -72,7 +107,7 @@ function Login(props) {
                     name="email"
                     value={email}
                     onChange={(e) => {
-                      handleEmail(e);
+                      handleChange(e);
                     }}
                   />
                 </div>
@@ -92,7 +127,7 @@ function Login(props) {
                     id="pwd"
                     placeholder="Enter password"
                     onChange={(e) => {
-                      handlePassword(e);
+                      handleChange(e);
                     }}
                     name="password"
                     value={password}
@@ -106,6 +141,7 @@ function Login(props) {
                     className="form-check-input"
                     type="checkbox"
                     name="remember"
+                    checked={remember}
                     value={remember}
                     onChange={(e) => handleCheck(e)}
                   />
