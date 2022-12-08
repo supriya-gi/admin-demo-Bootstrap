@@ -132,6 +132,8 @@ function SignUp(props) {
         }
       });
   };
+  const blockInvalidChar = (e) =>
+    ["e", "E", "+", "-"].includes(e.key) && e.preventDefault();
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -249,6 +251,7 @@ function SignUp(props) {
                     class="form-control"
                     min="0"
                     placeholder="Salary"
+                    onKeyDown={blockInvalidChar}
                     name="salary"
                     value={formik.values.salary}
                     required
