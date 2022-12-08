@@ -5,7 +5,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
-// import * as Yup from "yup";
+
 import "../App.css";
 
 const LoginSchema = (values) => {
@@ -154,182 +154,276 @@ function SignUp(props) {
   });
 
   return (
-    <div class="login-page  register ">
-      <div className="container">
-        <div className="row">
-          <div className="offset-lg-2 col-xs-12 col-lg-8">
-            <form
-              onSubmit={(e) => handleSignUp(e)}
-              className="borderp-5 p-5  bg-white shadow rounded "
-            >
-              <h2 className="mb-5">Create Account</h2>
-              <div className="row ">
-                <div className="col-md-6 col-sm-12">
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Enter Email"
-                    name="email"
-                    value={formik.values.email}
-                    required
-                    onChange={formik.handleChange}
-                  />
-                  {formik.errors.email && (
-                    <div style={{ color: "red" }}>{formik.errors.email}</div>
-                  )}
-                  <br />
+    <section className=" py-1 bg-blueGray-50">
+      <div className="w-full lg:w-8/12 px-4 mx-auto mt-6">
+        <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+          <div className="rounded-t  mb-0 px-6 py-4">
+            <div className="text-center flex justify-center">
+              <h6 className="text-blueGray-700 text-xl  font-bold">
+                Create account
+              </h6>
+            </div>
+          </div>
+          <hr />
+          <div className="flex-auto px-4 lg:px-10 py-10 pt-4 ">
+            <form onSubmit={(e) => handleSignUp(e)}>
+              {/* <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+              User Information
+            </h6> */}
+              <div className="flex flex-wrap">
+                <div className="w-full lg:w-6/12 md:w-6/12 sm:w-6/12 px-4">
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlfor="grid-password"
+                    >
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      placeholder="Enter Email"
+                      name="email"
+                      value={formik.values.email}
+                      required
+                      onChange={formik.handleChange}
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                    />{" "}
+                    {formik.errors.email && (
+                      <div style={{ color: "red" }}>{formik.errors.email}</div>
+                    )}
+                  </div>
+                </div>
+                <div className="w-full lg:w-6/12 md:w-6/12  sm:w-6/12 px-4">
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlfor="grid-password"
+                    >
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Enter password"
+                      name="password"
+                      value={formik.values.password}
+                      required
+                      onChange={formik.handleChange}
+                    />{" "}
+                    {formik.errors.password && (
+                      <div style={{ color: "red" }}>
+                        {formik.errors.password}
+                      </div>
+                    )}
+                  </div>
+                </div>
+                <div className="w-full lg:w-6/12 md:w-6/12 sm:w-6/12  px-4">
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlfor="grid-password"
+                    >
+                      First Name
+                    </label>
+                    <input
+                      type="text"
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Enter first name"
+                      name="fname"
+                      value={formik.values.fname}
+                      required
+                      onChange={formik.handleChange}
+                    />{" "}
+                    {formik.errors.fname && (
+                      <div style={{ color: "red" }}>{formik.errors.fname}</div>
+                    )}
+                  </div>
+                </div>
+                <div className="w-full lg:w-6/12 md:w-6/12 sm:w-6/12 px-4">
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlfor="grid-password"
+                    >
+                      Last Name
+                    </label>
+                    <input
+                      type="text"
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      name="lname"
+                      placeholder="Enter last Name"
+                      value={formik.values.lname}
+                      required
+                      onChange={formik.handleChange}
+                    />
+                    {formik.errors.lname && (
+                      <div style={{ color: "red" }}>{formik.errors.lname}</div>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-wrap">
+                <div className="w-full lg:w-6/12 md:w-6/12 sm:w-6/12 px-4">
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlfor="grid-password"
+                    >
+                      City
+                    </label>
+                    <input
+                      type="text"
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Enter city"
+                      name="city"
+                      value={formik.values.city}
+                      required
+                      onChange={formik.handleChange}
+                    />{" "}
+                    {formik.errors.city && (
+                      <div style={{ color: "red" }}>{formik.errors.city}</div>
+                    )}
+                  </div>
                 </div>
 
-                <div class="col-md-6">
-                  <input
-                    type="password"
-                    class="form-control"
-                    placeholder="Enter password"
-                    name="password"
-                    value={formik.values.password}
-                    required
-                    onChange={formik.handleChange}
-                  />
-                  {formik.errors.password && (
-                    <div style={{ color: "red" }}>{formik.errors.password}</div>
-                  )}
+                <div className="w-full lg:w-6/12 md:w-6/12 sm:w-6/12 px-4">
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlfor="grid-password"
+                    >
+                      Salary
+                    </label>
+                    <input
+                      type="number"
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      min="0"
+                      placeholder="Salary"
+                      onKeyDown={blockInvalidChar}
+                      name="salary"
+                      value={formik.values.salary}
+                      required
+                      onChange={formik.handleChange}
+                    />
+                    {formik.errors.salary && (
+                      <div style={{ color: "red" }}>{formik.errors.salary}</div>
+                    )}
+                  </div>
                 </div>
               </div>
-              <br />
-              <div class="row">
-                <div class="col-md-6">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter first name"
-                    name="fname"
-                    value={formik.values.fname}
-                    required
-                    onChange={formik.handleChange}
-                  />
-                  {formik.errors.fname && (
-                    <div style={{ color: "red" }}>{formik.errors.fname}</div>
-                  )}
-                  <br />
-                </div>
-
-                <div class="col-md-6">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter last name"
-                    name="lname"
-                    value={formik.values.lname}
-                    required
-                    onChange={formik.handleChange}
-                  />
-                  {formik.errors.lname && (
-                    <div style={{ color: "red" }}>{formik.errors.lname}</div>
-                  )}
-                </div>
-              </div>
-              <br />
-              <div className="row">
-                <div class="col-md-6">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Enter city"
-                    name="city"
-                    value={formik.values.city}
-                    required
-                    onChange={formik.handleChange}
-                  />
-                  {formik.errors.city && (
-                    <div style={{ color: "red" }}>{formik.errors.city}</div>
-                  )}
-                  <br />
-                </div>
-                <div class="col-md-6">
-                  <input
-                    type="number"
-                    class="form-control"
-                    min="0"
-                    placeholder="Salary"
-                    onKeyDown={blockInvalidChar}
-                    name="salary"
-                    value={formik.values.salary}
-                    required
-                    onChange={formik.handleChange}
-                  />
-                  {formik.errors.salary && (
-                    <div style={{ color: "red" }}>{formik.errors.salary}</div>
-                  )}
-                </div>
-              </div>
-              {/* <div className="row"> */}
-              <br />
-              <label className="mb-3">Gender</label>
-              <div
-                className="mb-4 d-flex justify-content-center"
-                name="gender"
-                onChange={formik.handleChange}
+              <label
+                className="block uppercase text-blueGray-600 text-xs text-center font-bold mt-3"
+                htmlfor="grid-password"
               >
-                {formik.errors.gender && (
-                  <div style={{ color: "red" }}>{formik.errors.gender}</div>
-                )}
-                <div class="form-check me-5">
-                  <input
-                    class="form-check-input"
-                    type="radio"
+                Gender
+              </label>
+              <div className="flex flex-wrap">
+                <div className="w-full lg:w-12/12 px-4">
+                  <div
+                    className="relative justify-center w-full item-center  flex my-4"
                     name="gender"
-                    id="flexRadioDefault1"
-                    value="male"
-                  />
-                  <label class="form-check-label" for="flexRadioDefault1">
-                    Male
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="gender"
-                    value="female"
-                    id="flexRadioDefault2"
-                  />
-                  <label class="form-check-label" for="flexRadioDefault2">
-                    Female
-                  </label>
+                    onChange={formik.handleChange}
+                  >
+                    <div className="flex items-center mr-6  ">
+                      <input
+                        id="default-radio-1"
+                        type="radio"
+                        value="male"
+                        name="gender"
+                        className=" h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label
+                        for="default-radio-1"
+                        className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        Male
+                      </label>
+                    </div>
+
+                    <div className="flex items-center">
+                      <input
+                        id="default-radio-2"
+                        type="radio"
+                        value="female"
+                        name="gender"
+                        className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                      />
+                      <label
+                        for="default-radio-2"
+                        className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                      >
+                        Female
+                      </label>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <textarea
-                class="form-control"
-                id="exampleFormControlTextarea1"
-                rows="3"
-                name="hobbies"
-                value={formik.values.hobbies}
-                placeholder="hobbies"
-                onChange={formik.handleChange}
-                required
-              ></textarea>
-              {formik.errors.hobbies && (
-                <div style={{ color: "red" }}>{formik.errors.hobbies}</div>
-              )}
-              <br />
-              <div className="mt-4">
-                <select
-                  class="form-select form-select-lg"
-                  name="type"
-                  //   value={values.type}
-                  onChange={formik.handleChange}
-                >
-                  <option value="select">Select</option>
-                  <option value="manager">Manager</option>
-                  <option value="employee">Employee</option>
-                </select>
-                {formik.errors.type && (
-                  <div style={{ color: "red" }}>{formik.errors.type}</div>
-                )}
+              <div className="flex flex-wrap justify-center">
+                <div className="w-full lg:w-8/12 px-4">
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlfor="grid-password"
+                    >
+                      Hobbies
+                    </label>
+                    <textarea
+                      type="text"
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      rows="3"
+                      name="hobbies"
+                      value={formik.values.hobbies}
+                      placeholder="hobbies"
+                      onChange={formik.handleChange}
+                      required
+                    ></textarea>
+                    {formik.errors.hobbies && (
+                      <div style={{ color: "red" }}>
+                        {formik.errors.hobbies}
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
-              <br />
-              <button type="submit" class="btn btn-primary">
-                SignUp
+
+              <div className="flex justify-center my-7">
+                <div className="mb-3 lg:w-96 md:w-96 sm:w-96 ">
+                  <select
+                    name="type"
+                    value={formik.values.type}
+                    onChange={formik.handleChange}
+                    className="form-select appearance-none
+      block
+      w-full
+      px-3
+      py-1.5
+      text-base
+      font-normal
+      text-gray-700
+      bg-white bg-clip-padding bg-no-repeat
+      border border-solid border-gray-300
+      rounded
+      transition
+      ease-in-out
+      m-0
+      focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    aria-label="Default select example"
+                  >
+                    <option value="select">Select</option>
+                    <option value="manager">Manager</option>
+                    <option value="employee">Employee</option>
+                  </select>
+                  {formik.errors.type && (
+                    <div style={{ color: "red" }}>{formik.errors.type}</div>
+                  )}
+                </div>
+              </div>
+
+              <button
+                className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                type="submit"
+              >
+                Sign Up
               </button>
               <hr />
               <Link className="links" onClick={props.toggle}>
@@ -339,7 +433,7 @@ function SignUp(props) {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

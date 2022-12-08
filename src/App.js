@@ -5,6 +5,7 @@ import Manager from "./manager/Manager";
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Employee from "./manager/Employee";
+import Module from "./components/Module";
 function App() {
   const [toggleForm, setToggleForm] = useState(true);
   const formMode = () => {
@@ -25,6 +26,7 @@ function App() {
         />
         <Route path="/manager" element={<Manager />} />
         <Route path="/employee/:uid" element={<Employee />} />
+        <Route path="/module" element={<Module />} />
       </Routes>
     </div>
   );
