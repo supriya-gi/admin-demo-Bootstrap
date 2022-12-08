@@ -4,17 +4,9 @@ import { setDoc, doc } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
-import {
-  Formik,
-  Form,
-  Field,
-  ErrorMessage,
-  validateYupSchema,
-  useFormik,
-} from "formik";
-import * as Yup from "yup";
+import { useFormik } from "formik";
+// import * as Yup from "yup";
 import "../App.css";
-import { type } from "@testing-library/user-event/dist/type";
 
 const LoginSchema = (values) => {
   const errors = {};
