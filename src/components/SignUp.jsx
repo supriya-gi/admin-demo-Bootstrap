@@ -40,7 +40,18 @@ const LoginSchema = (values) => {
   }
   if (!values.password) {
     errors.password = "*This Field is Required";
+  } else if (values.password.length < 6) {
+    errors.password = "password must be 6 charachter";
   }
+  // else if (
+  //   !/^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[!@#\$%\^&\*])(?=.{6,})/i.test(
+  //     values.password
+  //   )
+  // ) {
+  //   errors.password =
+  //     "Password contain, One Uppercase, One Lowercase, One Number and one special case Character";
+  // }
+
   if (!values.gender) {
     errors.gender = "*This Field is Required";
   }
@@ -50,6 +61,7 @@ const LoginSchema = (values) => {
 
   return errors;
 };
+
 function SignUp(props) {
   // const [formData, setFormData] = useState({
   //   email: "",
@@ -133,6 +145,7 @@ function SignUp(props) {
   // };
   const blockInvalidChar = (e) =>
     ["e", "E", "+", "-"].includes(e.key) && e.preventDefault();
+  //Formik
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -146,6 +159,7 @@ function SignUp(props) {
       type: "",
     },
     validate: LoginSchema,
+    validateOnChange: false,
     // onSubmit: (values) => {
     //   alert(JSON.stringify(values));
     //   console.log(values);
@@ -196,7 +210,7 @@ function SignUp(props) {
                       required
                       onChange={formik.handleChange}
                       className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    />{" "}
+                    />
                     {formik.errors.email && (
                       <div style={{ color: "red" }}>{formik.errors.email}</div>
                     )}
