@@ -5,7 +5,6 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
-
 import "../App.css";
 
 const LoginSchema = (values) => {
@@ -97,41 +96,41 @@ function SignUp(props) {
       //   createdAt: new Date(),
     });
   };
-  const handleSignUp = async (e) => {
-    e.preventDefault();
-    console.log("email", formik.values.email, "pass", formik.values.password);
-    //Funtion to Sign Up with Authentication
-    await createUserWithEmailAndPassword(
-      auth,
-      formik.values.email,
-      formik.values.password
-    )
-      .then((res) => {
-        if (res) {
-          createUserDocument(res, formik.values);
-          console.log("res", res, "hi", formik.values);
+  // const handleSignUp = async (e) => {
+  //   e.preventDefault();
+  //   console.log("email", formik.values.email, "pass", formik.values.password);
+  //   //Funtion to Sign Up with Authentication
+  //   await createUserWithEmailAndPassword(
+  //     auth,
+  //     formik.values.email,
+  //     formik.values.password
+  //   )
+  //     .then((res) => {
+  //       if (res) {
+  //         createUserDocument(res, formik.values);
+  //         console.log("res", res, "hi", formik.values);
 
-          props.toggle();
-          // toast.success("User Register Successfully");
-          toast("User Register successfully", { type: "success" });
-        }
-      })
-      .catch((error) => {
-        console.log("error", error);
-        toast("invalid Credential", { type: "error" });
-        switch (error.code) {
-          case "email-already-use-in":
-            // toast(error.message);
-            toast("email-already-use-in", { type: "error" });
-            break;
-          case "invalid-email":
-            // toast(error.message);
+  //         props.toggle();
+  //         // toast.success("User Register Successfully");
+  //         toast("User Register successfully", { type: "success" });
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log("error", error);
+  //       toast("invalid Credential", { type: "error" });
+  //       switch (error.code) {
+  //         case "email-already-use-in":
+  //           // toast(error.message);
+  //           toast("email-already-use-in", { type: "error" });
+  //           break;
+  //         case "invalid-email":
+  //           // toast(error.message);
 
-            toast("invalid-email", { type: "error" });
-            break;
-        }
-      });
-  };
+  //           toast("invalid-email", { type: "error" });
+  //           break;
+  //       }
+  //     });
+  // };
   const blockInvalidChar = (e) =>
     ["e", "E", "+", "-"].includes(e.key) && e.preventDefault();
   const formik = useFormik({
@@ -147,9 +146,22 @@ function SignUp(props) {
       type: "",
     },
     validate: LoginSchema,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values));
-      console.log(values);
+    // onSubmit: (values) => {
+    //   alert(JSON.stringify(values));
+    //   console.log(values);
+    // },
+    onSubmit: async (formik) => {
+      await createUserWithEmailAndPassword(auth, formik.email, formik.password)
+        .then((res) => {
+          props.toggle();
+          if (res) {
+            createUserDocument(res, formik);
+            console.log("res", res, "hi", formik.values);
+          }
+        })
+        .catch((error) => {
+          console.log("error", error);
+        });
     },
   });
 
@@ -166,10 +178,7 @@ function SignUp(props) {
           </div>
           <hr />
           <div className="flex-auto px-4 lg:px-10 py-10 pt-4 ">
-            <form onSubmit={(e) => handleSignUp(e)}>
-              {/* <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-              User Information
-            </h6> */}
+            <form>
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-6/12 md:w-6/12 sm:w-6/12 px-4">
                   <div className="relative w-full mb-3">
@@ -355,7 +364,10 @@ function SignUp(props) {
                         Female
                       </label>
                     </div>
-                  </div>
+                  </div>{" "}
+                  {formik.errors.gender && (
+                    <div style={{ color: "red" }}>{formik.errors.gender}</div>
+                  )}
                 </div>
               </div>
               <div className="flex flex-wrap justify-center">
@@ -422,6 +434,7 @@ function SignUp(props) {
               <button
                 className="bg-pink-500 text-white active:bg-pink-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
                 type="submit"
+                onClick={formik.handleSubmit}
               >
                 Sign Up
               </button>

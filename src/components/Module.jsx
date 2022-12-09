@@ -3,6 +3,91 @@ import React from "react";
 const Module = () => {
   return (
     <>
+      {/* <div className="w-full lg:w-12/12 px-4">
+        <div
+          className="relative justify-center w-full item-center  flex my-4"
+          // name="gender"
+          onChange={(e) => handleQuery(e)}
+          value={querys}
+        >
+          <div className="flex items-center mr-6  ">
+            <input
+              id="default-radio-1"
+              type="radio"
+              value="1"
+              // name="gender"
+              className=" h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label
+              for="default-radio-1"
+              className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >
+              Dept.HR with Max salary
+            </label>
+          </div>
+
+          <div className="flex items-center">
+            <input
+              id="default-radio-2"
+              type="radio"
+              value="2"
+              name="gender"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label
+              for="default-radio-2"
+              className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >
+              Dept.IT with Min salary
+            </label>
+          </div>
+          <div className="flex items-center">
+            <input
+              id="default-radio-3"
+              type="radio"
+              value="3"
+              // name="gender"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label
+              for="default-radio-3"
+              className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >
+              Dept.IT & location is Surat city
+            </label>
+          </div>
+          <div className="flex items-center">
+            <input
+              id="default-radio-4"
+              type="radio"
+              value="4"
+              // name="gender"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label
+              for="default-radio-4"
+              className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >
+              Dept.IT & city starting from A
+            </label>
+          </div>
+          <div className="flex items-center">
+            <input
+              id="default-radio-5"
+              type="radio"
+              value="5"
+              // name="gender"
+              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label
+              for="default-radio-5"
+              className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >
+              Dept.Sales & descending order of employee name
+            </label>
+          </div>
+        </div>
+      </div> */}
       {/* <div class="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto mt-24">
         <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
           <div class="block w-full overflow-x-auto">
